@@ -1,0 +1,274 @@
+<html>
+<head>
+	<title>Center for Applied Research in Information Technology: Faculty</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body onload="start_Form()">
+	<div class="top">
+		<h1>
+		<a href="http://ccse.kennesaw.edu/it"><img id="logo" src="img/logo.png" alt="CARIT Logo" /></a>
+			Center for Applied Research in Information Technology
+		</h1>
+	</div>
+	<div class="sidebar">
+		<ul>
+			<li><a class="sidebarLink" href="index.html">Home</a></li>
+			<li><a class="sidebarLink" href="faculty.html">Faculty</a></li>
+			<li><a class="sidebarLink" href="events.html">Events</a></li>
+			<li><a class="sidebarLink" href="apply.html">Careers</a></li>
+		</ul>
+	</div>
+	<div class="main">
+		<h2>
+			Careers
+		</h2>
+		<p>
+			Interested in an opportunity for learning while gaining real world experiences? CARIT is currently looking for multiple students to fill roles as student assistants. Complete the form below and click evaluate to see if you qualify.
+		</p>	
+		<form id="majorForm" method="post" onsubmit="return calculate_grades()">
+			<label>Major:</label>
+			<select id="majorSelect" onchange="display_grades()">
+				<option value="empty"></option>
+				<option value="cs">Computer Science</option>
+				<option value="english">English</option>
+				<option value="math">Mathematics</option>
+			</select>
+			<div id="csCollapsible">
+			<p>Please provide your grades in alphabetical grading format</p>
+			<label>Computer Basics 1000:</label>
+			<select id="computerGrade">
+				<option value="a">A</option>
+				<option value="b">B</option>
+				<option value="c">C</option>
+				<option value="d">D</option>
+				<option value="f">F</option>
+			</select>
+			<br>
+			<label>Programmming 1101:</label>
+			<select id="programmingGrade">
+				<option value="a">A</option>
+				<option value="b">B</option>
+				<option value="c">C</option>
+				<option value="d">D</option>
+				<option value="f">F</option>
+			</select>
+			<br>
+			<label>Web Development 2600:</label>
+			<select id="webDevGrade">
+				<option value="a">A</option>
+				<option value="b">B</option>
+				<option value="c">C</option>
+				<option value="d">D</option>
+				<option value="f">F</option>
+			</select>
+			</div>
+			<div id="englishCollapsible">
+			<p>Please provide your grades in alphabetical grading format</p>
+			<label>English 1101:</label>
+			<select id="englishGrade">
+				<option value="a">A</option>
+				<option value="b">B</option>
+				<option value="c">C</option>
+				<option value="d">D</option>
+				<option value="f">F</option>
+			</select>
+			<br>
+			<label>Composition 2064:</label>
+			<select id="compositionGrade">
+				<option value="a">A</option>
+				<option value="b">B</option>
+				<option value="c">C</option>
+				<option value="d">D</option>
+				<option value="f">F</option>
+			</select>
+			<br>
+			<label>Editing 3205:</label>
+			<select id="editingGrade">
+				<option value="a">A</option>
+				<option value="b">B</option>
+				<option value="c">C</option>
+				<option value="d">D</option>
+				<option value="f">F</option>
+			</select>		
+			</div>
+			<div id="mathCollapsible">
+			<p>Please provide your grades in alphabetical grading format</p>
+			<label>Math 1101:</label>
+			<select id="mathGrade">
+				<option value="a">A</option>
+				<option value="b">B</option>
+				<option value="c">C</option>
+				<option value="d">D</option>
+				<option value="f">F</option>
+			</select>
+			<br>
+			<label>Algebra 1215:</label>
+			<select id="algebraGrade">
+				<option value="a">A</option>
+				<option value="b">B</option>
+				<option value="c">C</option>
+				<option value="d">D</option>
+				<option value="f">F</option>
+			</select>
+			<br>
+			<label>Calculus 3200:</label>
+			<select id="calcGrade">
+				<option value="a">A</option>
+				<option value="b">B</option>
+				<option value="c">C</option>
+				<option value="d">D</option>
+				<option value="f">F</option>
+			</select>			
+			</div>
+			<div id="buttonCollapsible">
+				<button type="button" onclick="calculate_grades()">Evaluate</button>
+			</div>
+		</form> 				
+		<div id="congratulationsCollapsible">
+				<label>Your GPA: </label><var id="passedGPA"></var>
+				<p>
+				Congratulations! Your GPA qualifies you to apply for the student assistant position. If you would like to continue, you can follow the link to the <a href="http://ccse.kennesaw.edu/it">application site</a>
+				to continue submitting your application form. Once you have completed your submission, a member of the faculty will contact you via email for the next steps. 
+				</p>
+			</div>
+			<div id="apologiesCollapsible">
+				<label>Your GPA: </label><var id="failedGPA"></var>
+				<p>Thank you for your interest in our student assistant program. Unfortunately, you do not meet the GPA requirements at this time. If this changes in the future, please feel free to resubmit your application.</p>
+			</div>
+	</div>
+	<footer class="bottom">
+		<a href=" https://kennesaw.view.usg.edu/d2l/home/2510919">This website was made in conjunction with the Intro to Web Development class at Kennesaw State University, Section W02, Spring Semester.</a>
+	</footer>
+</body>
+<script>
+	function start_Form()
+	{
+		reset_select("majorSelect");
+		
+		reset_select("computerGrade");
+		reset_select("programmingGrade");
+		reset_select("webDevGrade");
+		
+		reset_select("englishGrade");
+		reset_select("compositionGrade");
+		reset_select("editingGrade");
+		
+		reset_select("mathGrade");
+		reset_select("algebraGrade");
+		reset_select("calcGrade");		
+		collapse_all();
+	}
+	
+	function reset_select(elementID)
+	{
+		var majorSelect = document.getElementById(elementID);
+		majorSelect.selectedIndex = 0;	
+	}
+	
+	function display_grades()
+	{
+		var majorSelect = document.getElementById("majorSelect");
+		var item_index=majorSelect.selectedIndex;
+		var item_value=majorSelect[item_index].value;
+		collapse_all();
+		if(item_value == "cs")
+			expand("csCollapsible");
+		if(item_value == "english")
+			expand("englishCollapsible");
+		if(item_value == "math")
+			expand("mathCollapsible");	
+		if(item_value != "empty")
+			expand("buttonCollapsible");
+	}
+	
+	function calculate_grades()
+	{
+		var majorSelect = document.getElementById("majorSelect");
+		var item_index=majorSelect.selectedIndex;
+		var item_value=majorSelect[item_index].value;
+		var gpa = 0.0;		
+		collapse("buttonCollapsible");
+		if(item_value == "cs")
+			gpa = calculate_cs_grades();
+		if(item_value == "english")
+			gpa = calculate_english_grades();
+		if(item_value == "math")
+			gpa = calculate_math_grades();	
+		if(gpa >= 3.0){
+			expand("congratulationsCollapsible");	
+			document.getElementById("passedGPA").innerHTML = gpa.toFixed(2);
+		}
+		else{
+			expand("apologiesCollapsible");		
+			document.getElementById("failedGPA").innerHTML = gpa.toFixed(2);
+		}
+	}
+	
+	function calculate_cs_grades()
+	{
+		var grades = [];
+		grades[0] = get_numeric_score_from_letter_grade("computerGrade");
+		grades[1] = get_numeric_score_from_letter_grade("programmingGrade");
+		grades[2] = get_numeric_score_from_letter_grade("webDevGrade");
+		var gpa = (grades[0] + grades[1] + grades[2])/grades.length;
+		return gpa;
+	}
+	
+	function calculate_english_grades()
+	{
+		var grades = [];
+		grades[0] = get_numeric_score_from_letter_grade("englishGrade");
+		grades[1] = get_numeric_score_from_letter_grade("compositionGrade");
+		grades[2] = get_numeric_score_from_letter_grade("editingGrade");
+		var gpa = (grades[0] + grades[1] + grades[2])/grades.length;
+		return gpa;
+	}
+	
+	function calculate_math_grades()
+	{
+		var grades = [];
+		grades[0] = get_numeric_score_from_letter_grade("mathGrade");
+		grades[1] = get_numeric_score_from_letter_grade("algebraGrade");
+		grades[2] = get_numeric_score_from_letter_grade("calcGrade");		
+		var gpa = (grades[0] + grades[1] + grades[2])/grades.length;
+		return gpa;
+	}
+	
+	function get_numeric_score_from_letter_grade(elementID)
+	{	
+		var gradeSelect = document.getElementById(elementID);
+		var item_index=gradeSelect.selectedIndex;
+		var item_value=gradeSelect[item_index].value;		
+		if(item_value == "a")
+			return 4.0;
+		if(item_value == "b")
+			return 3.0;
+		if(item_value == "c")
+			return 2.0;
+		if(item_value == "d")
+			return 1.0;
+		return 0.0;	
+	}
+	
+	function expand(elementID)
+	{	
+		var coll = document.getElementById(elementID);
+		coll.style.display = "block";
+	}
+	
+	function collapse_all()
+	{	
+		collapse("csCollapsible");
+		collapse("englishCollapsible");
+		collapse("mathCollapsible");
+		collapse("buttonCollapsible");
+		collapse("congratulationsCollapsible");
+		collapse("apologiesCollapsible");
+	}
+	
+	function collapse(elementID){	
+		var coll = document.getElementById(elementID);
+		coll.style.display = "none";
+	}
+</script>
+</html>
